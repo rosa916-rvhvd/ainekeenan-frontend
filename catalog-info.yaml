@@ -1,0 +1,49 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: ainekeenan-poi-map-app-dev
+  annotations:
+    argocd/app-name: ainekeenan-poi-map-app-dev
+    backstage.io/kubernetes-id: ainekeenan-poi-map-app-dev
+    backstage.io/kubernetes-namespace: ainekeenan
+    backstage.io/kubernetes-label-selector: 'app.kubernetes.io/instance=ainekeenan-poi-map-app-dev'
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: rosa916-rvhvd/ainekeenan-frontend
+    janus-idp.io/tekton-enabled: 'true'
+  tags:
+    - typescript
+    - angular
+    - workshop
+  links:
+    - url: https://console-openshift-console.apps.rosa916.9nln.p1.openshiftapps.com/dev-pipelines/ns/ainekeenan/
+      title: Pipelines
+      icon: web
+    - url: https://console-openshift-console.apps.rosa916.9nln.p1.openshiftapps.com/k8s/ns/ainekeenan/deployments/ainekeenan-poi-map-app
+      title: Deployment
+      icon: web
+    - url: https://devspaces.apps.rosa916.9nln.p1.openshiftapps.com/#https://github.com/rosa916-rvhvd/ainekeenan-frontend?che-editor=che-incubator/che-code/latest&devfilePath=.devfile-vscode.yaml
+      title: OpenShift Dev Spaces (VS Code)
+      icon: web
+    - url: http://ainekeenan-poi-map-app-ainekeenan.apps.rosa916.9nln.p1.openshiftapps.com
+      title: Map
+      icon: web
+spec:
+  type: service
+  lifecycle: production
+  owner: "user:default/ainekeenan"
+  system: workshop-system-ainekeenan
+  consumesApis:
+    - gateway-api-ainekeenan
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: workshop-system-ainekeenan
+  tags:
+    - backstage
+    - janus-idp
+    - openshift
+    - workshop
+    - rh-summit
+spec:
+  owner: "user:default/ainekeenan"
